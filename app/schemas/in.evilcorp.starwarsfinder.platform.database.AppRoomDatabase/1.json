@@ -1,0 +1,184 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 1,
+    "identityHash": "83c8c0e76e2e37acda0463451a18648d",
+    "entities": [
+      {
+        "tableName": "Character",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`character_id` TEXT NOT NULL, `name` TEXT NOT NULL, `birth_year` TEXT, `height` REAL, `extras_server_id` TEXT, PRIMARY KEY(`character_id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "character_id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "birthYear",
+            "columnName": "birth_year",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "height",
+            "columnName": "height",
+            "affinity": "REAL",
+            "notNull": false
+          },
+          {
+            "fieldPath": "extrasId",
+            "columnName": "extras_server_id",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "character_id"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "CharacterExtra",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`extra_id` TEXT NOT NULL, `race_name` TEXT, `language` TEXT, `home_world` TEXT, `population` INTEGER, PRIMARY KEY(`extra_id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "extra_id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "raceName",
+            "columnName": "race_name",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "language",
+            "columnName": "language",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "homeWorld",
+            "columnName": "home_world",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "population",
+            "columnName": "population",
+            "affinity": "INTEGER",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "extra_id"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "Film",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`film_id` TEXT NOT NULL, `title` TEXT NOT NULL, `episode_num` INTEGER, `description` TEXT, PRIMARY KEY(`film_id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "film_id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "title",
+            "columnName": "title",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "episodeNum",
+            "columnName": "episode_num",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "description",
+            "columnName": "description",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "film_id"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "ExtraCrossFilmsRef",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`extra_id` TEXT NOT NULL, `film_id` TEXT NOT NULL, PRIMARY KEY(`extra_id`, `film_id`))",
+        "fields": [
+          {
+            "fieldPath": "characterExtraId",
+            "columnName": "extra_id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "filmId",
+            "columnName": "film_id",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "extra_id",
+            "film_id"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [
+          {
+            "name": "index_ExtraCrossFilmsRef_extra_id",
+            "unique": false,
+            "columnNames": [
+              "extra_id"
+            ],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_ExtraCrossFilmsRef_extra_id` ON `${TABLE_NAME}` (`extra_id`)"
+          },
+          {
+            "name": "index_ExtraCrossFilmsRef_film_id",
+            "unique": false,
+            "columnNames": [
+              "film_id"
+            ],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_ExtraCrossFilmsRef_film_id` ON `${TABLE_NAME}` (`film_id`)"
+          }
+        ],
+        "foreignKeys": []
+      }
+    ],
+    "views": [],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '83c8c0e76e2e37acda0463451a18648d')"
+    ]
+  }
+}

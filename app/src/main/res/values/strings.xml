@@ -1,0 +1,16 @@
+<resources>
+
+    <string name="app_name">StarWarsFinder</string>
+    <string name="label_persons_found">%1$s persons found</string>
+    <string name="character_details_label_name">Name</string>
+    <string name="character_details_label_birth">Birth year</string>
+    <string name="character_details_label_height">Height</string>
+    <string name="character_details_label_race">Character race</string>
+    <string name="character_details_label_language">Language</string>
+    <string name="character_details_label_population">Population</string>
+    <string name="character_details_label_homeworld">Home world</string>
+    <string name="character_details_label_films">Films</string>
+    <string name="character_details_text_height">%1$.0f cm / %2$.2f in</string>
+    <string name="character_details_film_title">%1$s (episode %2$d)</string>
+
+</resources>
